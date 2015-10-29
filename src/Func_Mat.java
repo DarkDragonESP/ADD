@@ -12,7 +12,7 @@ public class Func_Mat {
 	 *            atributo sobre el cual se va a realizar la ganancia
 	 * @return ganancia obtenida
 	 */
-	public double ganancia(Map<Integer, List<String>> matriz, int column) {
+	public static double ganancia(Map<Integer, List<String>> matriz, int column) {
 
 		double ent = entropia(matriz);
 
@@ -37,7 +37,7 @@ public class Func_Mat {
 	 *            valor condicionado del atributo
 	 * @return entropia condicionada al atributo y valor
 	 */
-	private double entropia_condicionada(Map<Integer, List<String>> matriz,
+	private static double entropia_condicionada(Map<Integer, List<String>> matriz,
 			int column, String value) {
 
 		int total = 0;
@@ -79,7 +79,7 @@ public class Func_Mat {
 	 *            atributo sobre el cual se obtendrán los valores
 	 * @return distintos valores del atributo junto con su cardinalidad
 	 */
-	private Map<String, Integer> valores(Map<Integer, List<String>> matriz,
+	public static Map<String, Integer> valores(Map<Integer, List<String>> matriz,
 			int column) {
 		Map<String, Integer> salidas = new HashMap<>();
 
@@ -107,7 +107,7 @@ public class Func_Mat {
 	 *            datos de entrada
 	 * @return entropía sin condicionar
 	 */
-	private double entropia(Map<Integer, List<String>> matriz) {
+	private static double entropia(Map<Integer, List<String>> matriz) {
 
 		Map<String, Integer> salidas = valores(matriz, -1);
 		int total = matriz.size();
