@@ -3,14 +3,21 @@ import java.util.*;
 
 public class Nodo {
 	private String nombre;
-	private Map<String,Nodo> hijos; //guarda la rama y el nodo hijo
+	private String rama;
+	private List<Nodo> hijos; //guarda la rama y el nodo hijo
 	
 	public Nodo(String nombre){
 		this.nombre=nombre;
-		hijos= new HashMap<String,Nodo>();
+		this.rama= " ";
+		hijos= new LinkedList<Nodo>();
+	}
+	public Nodo(String nombre,String rama){
+		this.nombre=nombre;
+		this.rama= rama;
+		hijos= new LinkedList<Nodo>();
 	}
 	
-	public void anadirHijo(String nombre){
-		hijos.put(nombre, null);
+	public void anadirHijo(Nodo n){
+		hijos.add(n);
 	}
 }

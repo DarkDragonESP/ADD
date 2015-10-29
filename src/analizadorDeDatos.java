@@ -6,7 +6,7 @@ public class analizadorDeDatos {
 	List<Atributo> atributos;
 	List<Boolean> filas;
 	List<Boolean> columnas;
-
+	
 	public analizadorDeDatos(Map<Integer,List<String>> datos,List<Atributo> atributos){
 		this.datos=datos;
 		this.atributos=atributos;
@@ -28,10 +28,10 @@ public class analizadorDeDatos {
 	 * @param hijo
 	 * 			  nºdel hijo si nodo no es vacio
 	 */
-	public void procesarDatos(analizadorDeDatos datos,Nodo nodo,int hijo){
-		Map<Integer,Double> temp = new HashMap<Integer,Double>(); //columna,ganancia
+	public Nodo procesarDatos(analizadorDeDatos datos,List<Boolean> filas,List<Boolean> columnas,String rama){
+		Nodo nodo;
 
-		if(nodo == null){ //crear raiz y cancular ganancias
+		if(rama == " "){ //crear raiz y calcular ganancias
 			double gananciaMax =0;
 			int indice=0;
 			for(int i=1;i<datos.getAtributos().size();i++){
@@ -41,17 +41,31 @@ public class analizadorDeDatos {
 			}
 			nodo= new Nodo(datos.getAtributos().get(indice).getNombre());
 			for(int i=0;i<datos.getAtributos().get(indice).getValores().size();i++){
-				nodo.anadirHijo(datos.getAtributos().get(indice).getValores().get(i));
-				procesarDatos(datos,)
+				//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
+				List<Boolean> filas2=filas,columnas2=columnas;//no terminado clonar y modificar
+				nodo.anadirHijo(procesarDatos(datos,filas2,columnas2,datos.getAtributos().get(indice).getValores().get(i)));
 			}
 
 		}else{ // calcular hijos
 			if(Func_Mat.valores(datos.getDatos(),0).size()==1){ // si solo hay un tipo de atributo de salida, este sera el hijo
-
+				nodo= new Nodo("si"/*necesito el tipo del atributo para el que filas es True*/,rama);
 			}else{ //procesar datos para cada uno de los tipos de nodo
-
+				double gananciaMax =0;
+				int indice=0;
+				for(int i=1;i<datos.getAtributos().size();i++){
+					if(columnas.get(i) && gananciaMax < Func_Mat.ganancia(datos.getDatos(),i)){
+						indice=i;
+					}	
+				}
+				nodo= new Nodo(datos.getAtributos().get(indice).getNombre());
+				for(int i=0;i<datos.getAtributos().get(indice).getValores().size();i++){
+					//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
+					List<Boolean> filas2=filas,columnas2=columnas;//no terminado clonar y modificar
+					nodo.anadirHijo(procesarDatos(datos,filas2,columnas2,datos.getAtributos().get(indice).getValores().get(i)));
+				}
 			}
 		}
+		return nodo;
 	}
 
 	public List<Boolean> getColumnas() {
