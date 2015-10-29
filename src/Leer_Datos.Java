@@ -1,4 +1,4 @@
-package practica_1;
+
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,13 +12,13 @@ public class Leer_datos{
 		String csvFile = "C:\\Users\\Trethtzer\\Desktop\\Prueba.csv";
 		
 		BufferedReader br = null;      			// Para leer el csv
-		String line = "";						// La variable que almacena la linea actual en cada iteraciÃ³n.
+		String line = "";						// La variable que almacena la linea actual en cada iteración.
 		String [] cabecera;						// La variable que almacena la primera linea.
 		String cvsSplitBy = ",";				// El token separador.
 		String [][] matriz;						// La matriz con los datos.
-		int cont;								// El contador que nos indica la posiciÃ³n actual a rellenar.
+		int cont;								// El contador que nos indica la posición actual a rellenar.
 		
-		// Vamos a leer una linea por cada iteraciÃ³n del bucle while. 
+		// Vamos a leer una linea por cada iteración del bucle while. 
 		try{
 			br = new BufferedReader(new FileReader(csvFile));
 			
@@ -30,10 +30,10 @@ public class Leer_datos{
 			
 			while ((line = br.readLine()) != null){
 				
-				if(cont >= matriz.length){		// AmpliaciÃ³n de matriz.
+				if(cont >= matriz.length){		// Ampliación de matriz.
 					Arrays.copyOf(matriz, matriz.length + 100);
 				}
-				// AquÃ­ hacer lo que me pide Fran. Necesito saber que estructura quiere usar el y rellenÃ¡rsela.
+				// Aquí hacer lo que me pide Fran. Necesito saber que estructura quiere usar el y rellenársela.
 				matriz[cont] = line.split(cvsSplitBy);
 				cont++;
 				//System.out.print(matriz[cont-1][0] + "\n");
@@ -45,7 +45,7 @@ public class Leer_datos{
 			e.printStackTrace();
 		}
 		
-		/* La variable cont nos dice el nÃºmero de paciente que tenemos. Â¿PodrÃ­a usar Arrays.copyof para descartar 
+		/* La variable cont nos dice el número de paciente que tenemos. ¿Podría usar Arrays.copyof para descartar 
 	 	las lineas sobrantes? */
 	}
 }
