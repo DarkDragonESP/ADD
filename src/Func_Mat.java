@@ -22,7 +22,7 @@ public class Func_Mat {
 			double ent1 = (valores(matriz, column).get(value) / total)
 					* entropia_condicionada(matriz, column, value);
 
-			ent -= ent1;
+			ent-= ent1;
 		}
 
 		return ent;
