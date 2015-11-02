@@ -1,12 +1,16 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Atributo {
 	String nombre;
 	
-	List<String> valores;
-	public Atributo(String nombre,List<String> valores){
-		this.nombre=nombre;;
+	Set<String> valores;
+	public Atributo(String nombre){
+		this.nombre = nombre;
+		valores = new TreeSet<String>();
+	}
+	public Atributo(String nombre,Set<String> valores){
+		this.nombre=nombre;
 		
 		this.valores= valores;
 	}
@@ -25,10 +29,10 @@ public class Atributo {
 		this.nombre = nombre;
 	}
 
-	public List<String> getValores() {
+	public Set<String> getValores() {
 		return valores;
 	}
-	public void setValores(List<String> valores) {
+	public void setValores(Set<String> valores) {
 		this.valores = valores;
 	}
 	
