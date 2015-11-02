@@ -8,7 +8,7 @@ public class Lectura_Datos{
 	public static void main(String [] args){
 		
 		// Este string podria darse como argumento de entrada.
-		String csvFile = "C:\\Users\\Trethtzer\\Desktop\\Prueba.csv";
+		String csvFile = "ejemplo1.csv";
 		
 		BufferedReader br = null;      			// Para leer el csv
 		String line = "";						// La variable que almacena la linea actual en cada iteración.
