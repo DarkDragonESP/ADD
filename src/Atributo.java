@@ -11,7 +11,7 @@ public class Atributo {
 	}
 	public Atributo(String nombre,Set<String> valores){
 		this.nombre=nombre;
-		
+		valores = new TreeSet<String>();
 		this.valores= valores;
 	}
 	public void add(String valor){

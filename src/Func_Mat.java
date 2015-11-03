@@ -20,15 +20,13 @@ public class Func_Mat {
 
 		double ent = entropia(filas, matriz);
 
-		int total = 0;
+		double total = 0;
 		for (boolean val:filas)
 			if (val)
 				total++;
-
 		for (String value : valores(filas, matriz, column).keySet()) {
 			double ent1 = (valores(filas, matriz, column).get(value) / total)
 					* entropia_condicionada(filas, matriz, column, value);
-
 			ent -= ent1;
 		}
 
@@ -47,7 +45,7 @@ public class Func_Mat {
 	private static double entropia_condicionada(List<Boolean> filas, Map<Integer, List<String>> matriz,
 			int column, String value) {
 
-		int total = 0;
+		double total = 0;
 		Map<String, Integer> salidas = new HashMap<>();
 
 		for (int index : matriz.keySet()) {
@@ -127,23 +125,26 @@ public class Func_Mat {
 
 		//Suponemos que las salidas son la primera columna
 		Map<String, Integer> salidas = valores(filas, matriz, -1);
-		int total = 0;
+		double total = 0;
 		for (boolean val:filas)
 			if (val)
 				total++;
-
 		double res = 0.0;
 		for (String item : salidas.keySet()) {
 			int num = salidas.get(item);
 			double e;
 			try {
-				e = (num / total) * (Math.log10(num / total) / Math.log10(2));
+				if(num/total ==0){ //log10 0 == NaN ,NaN no es una exepcion (?)
+					e=0;
+				}else{
+					e = (num / total) * (Math.log10(num / total) / Math.log10(2));
+				}
+				
 			} catch (Exception ex) {
 				e = 0;
 			}
 			res -= e;
 		}
-
 		return res;
 	}
 
