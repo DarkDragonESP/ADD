@@ -42,6 +42,22 @@ public class test {
 		
 		System.out.println("Ganancia 1(0) = "+Func_Mat.ganancia(filas,ejemplo,1));
 		System.out.println("Ganancia 2(1) = "+Func_Mat.ganancia(filas,ejemplo,2));
+		System.out.println("------------------------");
+		
+	//	analizadorDeDatos datos= new analizadorDeDatos(ejemplo,atributos);
+		
+	//	System.out.println(datos.procesarDatos(filas, columnas, " "));
+		
+		
+		System.out.println("------------------------");
+		List<Nodo> hijo= new LinkedList<Nodo>();
+		
+		Nodo nodo= new Nodo("raiz");
+		nodo.anadirHijo(new Nodo("pepe","asd"));
+		nodo.anadirHijo(new Nodo("pepe2","asd2"));
+		nodo.anadirHijo(new Nodo("pepe3","asd3"));
+		System.out.println(Nodo.toStringTree(nodo));
+		
 	}
 
 }
