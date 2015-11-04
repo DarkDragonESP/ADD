@@ -59,17 +59,28 @@ testBinVal = test ["value of zero"  ~: 0 ~=? binVal zero,
 
 -- | If you dare, define a function 'foldBin' to fold a value of type 'Bin'
 
-foldBin :: a
-foldBin = undefined
+foldBin ::(Eq a) => (Bit -> a -> a) -> a -> Bin -> a
+foldBin f base = plegar
+	where
+		plegar (MSB x) = f x base
+		plegar (B resto x) = f x (plegar resto)
 
 -- | and use 'foldBin' to define a function 'binVal''  equivalent to 'binVal'
 
 binVal' :: Bin -> Integer
-binVal' = undefined
+binVal' numero = foldBin f 0 numero
+	where
+		f O num = 2 * num
+		f I num = (2 * num) + 1
+		
 
 -- | Test your function with HUnit.
 
--- todo
+testBinVal' :: Test
+testBinVal' = test ["value of zero"  ~: 0 ~=? binVal' zero,
+                   "value of one"   ~: 1 ~=? binVal' one,
+                   "value of three" ~: 3 ~=? binVal' three,
+                   "value of six"   ~: 6 ~=? binVal' six]
 
 -- |----------------------------------------------------------------------
 -- | Exercise 2
@@ -98,7 +109,13 @@ TestVarLibres =  "sin variables libres" ~: [] ~=? fvAexp(N 3)--,
 -- | occurring in a Boolean expression.
 
 fvBexp :: Bexp -> [Var]
-fvBexp = undefined
+fvBexp TRUE = []
+fvBexp FALSE = []
+fvBexp Eq a1 a2 = (fvAexp a1) `union` (fvAexp a2)
+fvBexp Le a1 a2 = (fvAexp a1) `union` (fvAexp a2)
+fvBexp Neg b1 = fvBexp b1
+fvBexp And b1 b2 = (fvBexp b1) `union` (fvBexp b2)
+
 
 -- | Test your function with HUnit.
 
