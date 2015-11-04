@@ -44,10 +44,25 @@ public class test {
 		System.out.println("Ganancia 2(1) = "+Func_Mat.ganancia(filas,ejemplo,2));
 		System.out.println("------------------------");
 		
-	//	analizadorDeDatos datos= new analizadorDeDatos(ejemplo,atributos);
+		analizadorDeDatos datos= new analizadorDeDatos(ejemplo,atributos);
+		analizadorDeDatos datos2=Lectura_Datos.crea_analizador("ejemplo1.csv");
+	
+		System.out.println(Nodo.toStringTree(datos.procesarDatos(filas, columnas, " ")));
 		
-	//	System.out.println(datos.procesarDatos(filas, columnas, " "));
+		System.out.println("------------------------");
+		System.out.println(datos2);
+		List<Boolean> filas2=new LinkedList<Boolean>();;
+		List<Boolean> columnas2=new LinkedList<Boolean>();;
+		for(Integer i=0;i<datos2.getDatos().size();i++){
+			filas2.add(new Boolean(true));
+		}
+		for(Integer i=0;i<datos2.getAtributos().size();i++){
+			columnas2.add(new Boolean(true));
+		}
 		
+		
+		
+		System.out.println(Nodo.toStringTree(datos2.procesarDatos(filas2, columnas2, " ")));
 		
 		System.out.println("------------------------");
 		List<Nodo> hijo= new LinkedList<Nodo>();
@@ -57,6 +72,8 @@ public class test {
 		nodo.anadirHijo(new Nodo("pepe2","asd2"));
 		nodo.anadirHijo(new Nodo("pepe3","asd3"));
 		System.out.println(Nodo.toStringTree(nodo));
+		System.out.println("------------------------");
+		System.out.println(atributos);
 		
 	}
 

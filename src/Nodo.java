@@ -14,11 +14,11 @@ public class Nodo {
 	public Nodo(String nombre,String rama){
 		this.nombre=nombre;
 		this.rama= rama;
-		hijos= new LinkedList<Nodo>();
+		this.hijos= new LinkedList<Nodo>();
 	}
 	
 	public void anadirHijo(Nodo n){
-		hijos.add(n);
+		this.hijos.add(n);
 	}
 	public boolean tieneHijos(){
 		return !hijos.isEmpty();

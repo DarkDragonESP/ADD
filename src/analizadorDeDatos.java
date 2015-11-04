@@ -30,18 +30,25 @@ public class analizadorDeDatos {
 				}	
 			}
 			nodo= new Nodo(this.getAtributos().get(indice).getNombre());
+			columnas.set(indice, false);
+			System.out.println(this.getAtributos().get(indice).getValores());
 			for (String tipo : this.getAtributos().get(indice).getValores()){
 				//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
-				List<Boolean> filas2=filas,columnas2=columnas;//no terminado clonar y modificar
-				nodo.anadirHijo(procesarDatos(filas2,columnas2,tipo));
+				List<Boolean> filas2= procesarFilas(filas,tipo,indice);
+				System.out.println("Caso 1 por cada rama hacer "+tipo);
+				nodo.anadirHijo(procesarDatos(filas2,columnas,tipo));
 			}
 			
 			
 
 		}else{ // calcular hijos
+			System.out.println("Caso 2");
 			if(Func_Mat.valores(filas,this.getDatos(),0).size()==1){ // si solo hay un tipo de atributo de salida, este sera el hijo
-				nodo= new Nodo("si"/*necesito el tipo del atributo para el que filas es True*/,rama);
+				System.out.println("Caso 2.1");
+				System.out.println(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString());
+				nodo= new Nodo(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString()/*necesito el tipo del atributo para el que filas es True*/,rama);
 			}else{ //procesar datos para cada uno de los tipos de nodo
+				System.out.println("Caso 2.2");
 				double gananciaMax =0;
 				int indice=0;
 				for(int i=1;i<this.getAtributos().size();i++){
@@ -50,10 +57,12 @@ public class analizadorDeDatos {
 					}	
 				}
 				nodo= new Nodo(this.getAtributos().get(indice).getNombre());
+				columnas.set(indice, false);
 				for (String tipo : this.getAtributos().get(indice).getValores()){
 					//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
-					List<Boolean> filas2=filas,columnas2=columnas;//no terminado clonar y modificar
-					nodo.anadirHijo(procesarDatos(filas2,columnas2,tipo));
+					//List<Boolean> filas2=filas,columnas2=columnas;//no terminado clonar y modificar
+					
+					nodo.anadirHijo(procesarDatos(filas,columnas,tipo));
 				}
 			}
 		}
@@ -61,6 +70,18 @@ public class analizadorDeDatos {
 	}
 
 
+//dado la columna y el tipo, debemos tachar los que no sean igual al tipo
+	private List<Boolean> procesarFilas(List<Boolean> filas, String tipo, int columna) {
+		List<Boolean> filas_new = new ArrayList<Boolean>();
+		filas_new.addAll(filas);
+		for(Map.Entry<Integer,List<String>> e: this.getDatos().entrySet()){
+			if(e.getValue().get(columna) != tipo){
+				filas_new.set(e.getKey(), false);
+			}
+		}
+		
+		return filas_new;
+	}
 
 	public Map<Integer, List<String>> getDatos() {
 		return datos;
@@ -69,6 +90,9 @@ public class analizadorDeDatos {
 	public List<Atributo> getAtributos() {
 		return atributos;
 	}
-
+	
+	public String toString(){
+		return new String("Atributos: "+this.atributos.toString()+"\n Datos: \n"+this.getDatos().toString());
+	}
 
 }
