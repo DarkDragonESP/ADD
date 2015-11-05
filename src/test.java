@@ -8,7 +8,7 @@ public class test {
 		List<Boolean> columnas=new LinkedList<Boolean>();;
 
 		
-		Map<Integer,List<String>> ejemplo = new HashMap<Integer,List<String>>();
+		/*Map<Integer,List<String>> ejemplo = new HashMap<Integer,List<String>>();
 		List<Atributo> atributos = new LinkedList<Atributo>();
 		Set<String> posibles_valores= new TreeSet<String>();
 		posibles_valores.add("Si");posibles_valores.add("No");
@@ -45,9 +45,12 @@ public class test {
 		System.out.println("------------------------");
 		
 		analizadorDeDatos datos= new analizadorDeDatos(ejemplo,atributos);
+			System.out.println(Nodo.toStringTree(datos.procesarDatos(filas, columnas, " ")));
+		*/
+		
 		analizadorDeDatos datos2=Lectura_Datos.crea_analizador("ejemplo1.csv");
 	
-		System.out.println(Nodo.toStringTree(datos.procesarDatos(filas, columnas, " ")));
+	
 		
 		System.out.println("------------------------");
 		System.out.println(datos2);
@@ -65,7 +68,7 @@ public class test {
 		System.out.println(Nodo.toStringTree(datos2.procesarDatos(filas2, columnas2, " ")));
 		
 		System.out.println("------------------------");
-		List<Nodo> hijo= new LinkedList<Nodo>();
+		/*List<Nodo> hijo= new LinkedList<Nodo>();
 		
 		Nodo nodo= new Nodo("raiz");
 		nodo.anadirHijo(new Nodo("pepe","asd"));
@@ -74,7 +77,7 @@ public class test {
 		System.out.println(Nodo.toStringTree(nodo));
 		System.out.println("------------------------");
 		System.out.println(atributos);
-		
+		*/
 	}
 
 }

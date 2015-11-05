@@ -25,7 +25,9 @@ public class analizadorDeDatos {
 			double gananciaMax =0;
 			int indice=0;
 			for(int i=1;i<this.getAtributos().size();i++){
+				System.out.println("Ganancia de "+this.getAtributos().get(i).nombre+" "+Func_Mat.ganancia(filas,this.getDatos(),i));
 				if( gananciaMax < Func_Mat.ganancia(filas,this.getDatos(),i)){
+					gananciaMax = Func_Mat.ganancia(filas,this.getDatos(),i);
 					indice=i;
 				}	
 			}

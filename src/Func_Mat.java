@@ -28,6 +28,7 @@ public class Func_Mat {
 			double ent1 = (valores(filas, matriz, column).get(value) / total)
 					* entropia_condicionada(filas, matriz, column, value);
 			ent -= ent1;
+			System.out.println(ent1);
 		}
 
 		return ent;
@@ -51,11 +52,11 @@ public class Func_Mat {
 		for (int index : matriz.keySet()) {
 			if (filas.get(index)){
 				List<String> atrs = matriz.get(index);
-	
+
 				if (atrs.get(column).equals(value)) {
 					total++;
 					String salida = atrs.get(atrs.size() - 1);
-	
+
 					if (salidas.containsKey(salida))
 						salidas.put(salida, salidas.get(salida) + 1);
 					else
@@ -66,16 +67,21 @@ public class Func_Mat {
 
 		double res = 0.0;
 		for (String item : salidas.keySet()) {
-			int num = salidas.get(item);
+			double num = salidas.get(item);
 			double e;
 			try {
-				e = (num / total) * (Math.log10(num / total) / Math.log10(2));
+				if(num/total ==0){ //log10 0 == NaN ,NaN no es una exepcion (?)
+					e=0;
+				}else{
+					e = (num / total) * (Math.log10(num / total) / Math.log10(2));
+				}
 			} catch (Exception ex) {
 				e = 0;
 			}
 			res -= e;
+			System.out.println( " div es "+num +"/"+total);
 		}
-
+System.out.println("Entropia condicionada de "+value+" es "+res);
 		return res;
 	}
 
@@ -95,7 +101,7 @@ public class Func_Mat {
 		for (int index : matriz.keySet()) {
 			if (filas.get(index)){
 				List<String> atrs = matriz.get(index);
-	
+
 				String element;
 				if (column != -1) {
 					element = atrs.get(column);
@@ -103,7 +109,7 @@ public class Func_Mat {
 					//Suponemos que las salidas están en la primera columna
 					element = atrs.get(0);
 				}
-	
+
 				if (salidas.containsKey(element))
 					salidas.put(element, salidas.get(element) + 1);
 				else
@@ -139,7 +145,7 @@ public class Func_Mat {
 				}else{
 					e = (num / total) * (Math.log10(num / total) / Math.log10(2));
 				}
-				
+
 			} catch (Exception ex) {
 				e = 0;
 			}
