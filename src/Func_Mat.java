@@ -55,7 +55,7 @@ public class Func_Mat {
 
 				if (atrs.get(column).equals(value)) {
 					total++;
-					String salida = atrs.get(atrs.size() - 1);
+					String salida = atrs.get(0);
 
 					if (salidas.containsKey(salida))
 						salidas.put(salida, salidas.get(salida) + 1);
