@@ -28,7 +28,7 @@ public class Func_Mat {
 			double ent1 = (valores(filas, matriz, column).get(value) / total)
 					* entropia_condicionada(filas, matriz, column, value);
 			ent -= ent1;
-			System.out.println(ent1);
+			//System.out.println(ent1);
 		}
 
 		return ent;
@@ -79,9 +79,9 @@ public class Func_Mat {
 				e = 0;
 			}
 			res -= e;
-			System.out.println( " div es "+num +"/"+total);
+			//System.out.println( " div es "+num +"/"+total);
 		}
-System.out.println("Entropia condicionada de "+value+" es "+res);
+//System.out.println("Entropia condicionada de "+value+" es "+res);
 		return res;
 	}
 

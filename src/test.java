@@ -62,12 +62,34 @@ public class test {
 		for(Integer i=0;i<datos2.getAtributos().size();i++){
 			columnas2.add(new Boolean(true));
 		}
-		
+		columnas2.set(0, false);
 		
 		
 		System.out.println(Nodo.toStringTree(datos2.procesarDatos(filas2, columnas2, " ")));
 		
 		System.out.println("------------------------");
+		
+		
+analizadorDeDatos datos3=Lectura_Datos.crea_analizador("ejemplo2.csv");
+	
+	
+		
+		System.out.println(datos3);
+		List<Boolean> filas3=new LinkedList<Boolean>();;
+		List<Boolean> columnas3=new LinkedList<Boolean>();;
+		for(Integer i=0;i<datos3.getDatos().size();i++){
+			filas3.add(new Boolean(true));
+		}
+		for(Integer i=0;i<datos3.getAtributos().size();i++){
+			columnas3.add(new Boolean(true));
+		}
+		columnas3.set(0, false);
+		
+		
+		System.out.println(Nodo.toStringTree(datos3.procesarDatos(filas3, columnas3, " ")));
+		
+		System.out.println("------------------------");
+		
 		/*List<Nodo> hijo= new LinkedList<Nodo>();
 		
 		Nodo nodo= new Nodo("raiz");

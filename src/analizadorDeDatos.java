@@ -31,40 +31,48 @@ public class analizadorDeDatos {
 					indice=i;
 				}	
 			}
+			System.out.println("Nuevo nodo "+this.getAtributos().get(indice).getNombre());
 			nodo= new Nodo(this.getAtributos().get(indice).getNombre());
 			columnas.set(indice, false);
-			System.out.println(this.getAtributos().get(indice).getValores());
+			//System.out.println(this.getAtributos().get(indice).getValores());
 			for (String tipo : this.getAtributos().get(indice).getValores()){
 				//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
 				List<Boolean> filas2= procesarFilas(filas,tipo,indice);
-				System.out.println("Caso 1 por cada rama hacer "+tipo);
+				//System.out.println("filas2"+filas2);
+				//System.out.println("Caso 1 por cada rama hacer "+tipo);
+				//System.out.println(Nodo.toStringTree(nodo));
 				nodo.anadirHijo(procesarDatos(filas2,columnas,tipo));
 			}
 			
 			
 
 		}else{ // calcular hijos
-			System.out.println("Caso 2");
+			System.out.println("Caso 2  "+Func_Mat.valores(filas,this.getDatos(),0).size());
+			
 			if(Func_Mat.valores(filas,this.getDatos(),0).size()==1){ // si solo hay un tipo de atributo de salida, este sera el hijo
 				System.out.println("Caso 2.1");
-				System.out.println(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString());
+				//System.out.println(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString());
+				System.out.println("Nuevo nodo "+Func_Mat.valores(filas,this.getDatos(),0).keySet().toString());
 				nodo= new Nodo(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString()/*necesito el tipo del atributo para el que filas es True*/,rama);
 			}else{ //procesar datos para cada uno de los tipos de nodo
 				System.out.println("Caso 2.2");
 				double gananciaMax =0;
 				int indice=0;
 				for(int i=1;i<this.getAtributos().size();i++){
+					System.out.println("Ganancia de "+this.getAtributos().get(i).nombre+" "+Func_Mat.ganancia(filas,this.getDatos(),i));
 					if(columnas.get(i) && gananciaMax < Func_Mat.ganancia(filas,this.getDatos(),i)){
+						gananciaMax = Func_Mat.ganancia(filas,this.getDatos(),i);
 						indice=i;
 					}	
 				}
+				System.out.println("Nuevo nodo "+this.getAtributos().get(indice).getNombre());
 				nodo= new Nodo(this.getAtributos().get(indice).getNombre());
 				columnas.set(indice, false);
 				for (String tipo : this.getAtributos().get(indice).getValores()){
 					//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
 					//List<Boolean> filas2=filas,columnas2=columnas;//no terminado clonar y modificar
-					
-					nodo.anadirHijo(procesarDatos(filas,columnas,tipo));
+					List<Boolean> filas2= procesarFilas(filas,tipo,indice);
+					nodo.anadirHijo(procesarDatos(filas2,columnas,tipo));
 				}
 			}
 		}
@@ -77,7 +85,8 @@ public class analizadorDeDatos {
 		List<Boolean> filas_new = new ArrayList<Boolean>();
 		filas_new.addAll(filas);
 		for(Map.Entry<Integer,List<String>> e: this.getDatos().entrySet()){
-			if(e.getValue().get(columna) != tipo){
+			//System.out.println("for "+e.getKey()+" "+e.getValue().get(columna));
+			if(!e.getValue().get(columna).equalsIgnoreCase(tipo)){
 				filas_new.set(e.getKey(), false);
 			}
 		}
