@@ -31,7 +31,7 @@ public class analizadorDeDatos {
 					indice=i;
 				}	
 			}
-			System.out.println("Nuevo nodo "+this.getAtributos().get(indice).getNombre());
+			System.out.println("Nuevo nodo "+this.getAtributos().get(indice).toString());
 			nodo= new Nodo(this.getAtributos().get(indice).getNombre());
 			columnas.set(indice, false);
 			//System.out.println(this.getAtributos().get(indice).getValores());
@@ -53,7 +53,7 @@ public class analizadorDeDatos {
 				System.out.println("Caso 2.1");
 				//System.out.println(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString());
 				System.out.println("Nuevo nodo "+Func_Mat.valores(filas,this.getDatos(),0).keySet().toString());
-				nodo= new Nodo(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString()/*necesito el tipo del atributo para el que filas es True*/,rama);
+				nodo= new Nodo(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString(),rama);
 			}else{ //procesar datos para cada uno de los tipos de nodo
 				System.out.println("Caso 2.2");
 				double gananciaMax =0;
@@ -68,8 +68,8 @@ public class analizadorDeDatos {
 					}
 					
 				}
-				System.out.println("Nuevo nodo "+this.getAtributos().get(indice).getNombre());
-				nodo= new Nodo(this.getAtributos().get(indice).getNombre());
+				System.out.println("Nuevo nodo "+this.getAtributos().get(indice).toString());
+				nodo= new Nodo(this.getAtributos().get(indice).getNombre(),rama);
 				columnas.set(indice, false);
 				for (String tipo : this.getAtributos().get(indice).getValores()){
 					//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
