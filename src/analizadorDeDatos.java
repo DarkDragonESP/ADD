@@ -56,34 +56,50 @@ public class analizadorDeDatos {
 				nodo= new Nodo(Func_Mat.valores(filas,this.getDatos(),0).keySet().toString(),rama);
 			}else{ //procesar datos para cada uno de los tipos de nodo
 				System.out.println("Caso 2.2");
-				double gananciaMax =0;
-				int indice=0;
-				for(int i=1;i<this.getAtributos().size();i++){
-					if(columnas.get(i)){
-						System.out.println("Ganancia de "+this.getAtributos().get(i).nombre+" "+Func_Mat.ganancia(filas,this.getDatos(),i));
-						if(columnas.get(i) && gananciaMax < Func_Mat.ganancia(filas,this.getDatos(),i)){
-							gananciaMax = Func_Mat.ganancia(filas,this.getDatos(),i);
-							indice=i;
-						}	
+				//Caso 2.2.1 No hay filas
+				if(!hayFilas(filas)){
+					nodo= new Nodo("undefined",rama);
+				}else{
+					double gananciaMax =0;
+					int indice=0;
+					for(int i=1;i<this.getAtributos().size();i++){
+						if(columnas.get(i)){
+							System.out.println("Ganancia de "+this.getAtributos().get(i).nombre+" "+Func_Mat.ganancia(filas,this.getDatos(),i));
+							if(columnas.get(i) && gananciaMax < Func_Mat.ganancia(filas,this.getDatos(),i)){
+								gananciaMax = Func_Mat.ganancia(filas,this.getDatos(),i);
+								indice=i;
+							}	
+						}
+						
 					}
-					
+					System.out.println("Nuevo nodo "+this.getAtributos().get(indice).toString());
+					nodo= new Nodo(this.getAtributos().get(indice).getNombre(),rama);
+					columnas.set(indice, false);
+					for (String tipo : this.getAtributos().get(indice).getValores()){
+						//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
+						//List<Boolean> filas2=filas,columnas2=columnas;//no terminado clonar y modificar
+						List<Boolean> filas2= procesarFilas(filas,tipo,indice);
+						nodo.anadirHijo(procesarDatos(filas2,columnas,tipo));
+					}
 				}
-				System.out.println("Nuevo nodo "+this.getAtributos().get(indice).toString());
-				nodo= new Nodo(this.getAtributos().get(indice).getNombre(),rama);
-				columnas.set(indice, false);
-				for (String tipo : this.getAtributos().get(indice).getValores()){
-					//crear dos nuevas listas filas2 y columnas2 segun la rama y atributo actual
-					//List<Boolean> filas2=filas,columnas2=columnas;//no terminado clonar y modificar
-					List<Boolean> filas2= procesarFilas(filas,tipo,indice);
-					nodo.anadirHijo(procesarDatos(filas2,columnas,tipo));
-				}
+				
 			}
 		}
 		return nodo;
 	}
 
 
-//dado la columna y el tipo, debemos tachar los que no sean igual al tipo
+private boolean hayFilas(List<Boolean> filas) {
+		Boolean res=false;
+		Integer cont=0;
+		while(!res && cont <filas.size()){
+			res= filas.get(cont);
+			cont++;
+		}
+		return res;
+	}
+
+	//dado la columna y el tipo, debemos tachar los que no sean igual al tipo
 	private List<Boolean> procesarFilas(List<Boolean> filas, String tipo, int columna) {
 		List<Boolean> filas_new = new ArrayList<Boolean>();
 		filas_new.addAll(filas);
