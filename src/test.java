@@ -3,8 +3,9 @@ import java.util.*;
 public class test {
 
 	public static void main(String[] args) {
+		Inicializador a1;
 		
-		Inicializador a1 = new Inicializador("ejemplo1.csv",true);
+		a1 = new Inicializador("ejemplo1.csv",true);
 		System.out.println(a1.procesar());
 		
 		a1 = new Inicializador("ejemplo2.csv",true);

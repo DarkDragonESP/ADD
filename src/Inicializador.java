@@ -8,10 +8,12 @@ public class Inicializador {
 	//columna True si salida es columna 0, false si columna salida es la ultima (checkbox)
 	public Inicializador(String fichero, Boolean columna){
 		datos=Lectura_Datos.crea_analizador(fichero);
+		System.out.println(datos.toString());
 		//mover la columna final a la primera si columna es falso
 		if(!columna){
 			this.modificarUltimaCol();
 		}
+		System.out.println(datos.toString());
 		//inicializar filas y columnas
 		filas=new LinkedList<Boolean>();;
 		columnas=new LinkedList<Boolean>();;
@@ -27,6 +29,11 @@ public class Inicializador {
 		return Nodo.toStringTree(datos.procesarDatos(filas, columnas, " "));
 	}
 	private void modificarUltimaCol(){
+		int ultPos = this.datos.getAtributos().size()-1;
+		Atributo aux1 = this.datos.getAtributos().get(0);
+		this.datos.getAtributos().set(0,this.datos.getAtributos().get(ultPos) );
+		this.datos.getAtributos().set(ultPos,aux1); 
+		
 		for(Map.Entry<Integer,List<String>> e: this.datos.getDatos().entrySet()){
 			String aux = e.getValue().get(0);
 			int ultimaPos = e.getValue().size()-1;
