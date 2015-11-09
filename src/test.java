@@ -14,7 +14,8 @@ public class test {
 		a1 = new Inicializador("ejemplo3false.csv",false);
 		System.out.println(a1.procesar());
 		
-		
+		a1 = new Inicializador("ejemplo4false.csv",false);
+		System.out.println(a1.procesar());
 		//datos de entrada tras procesar .csv
 		/*List<Boolean> filas=new LinkedList<Boolean>();;
 		List<Boolean> columnas=new LinkedList<Boolean>();;
