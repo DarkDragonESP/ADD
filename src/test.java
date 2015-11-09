@@ -21,7 +21,8 @@ public class test {
 		System.out.println(a1.procesar());
 		
 		
-		
+		a1 = new Inicializador("ejemplo6false.csv",false);
+		System.out.println(a1.procesar());
 		
 		
 		
