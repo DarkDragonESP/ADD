@@ -109,4 +109,6 @@ public class analizadorDeDatos {
 		return new String("Atributos: "+this.atributos.toString()+"\n Datos: \n"+this.getDatos().toString());
 	}
 
+
+
 }

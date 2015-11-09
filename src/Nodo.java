@@ -43,7 +43,7 @@ public class Nodo {
 	}
 	
 	public String toString(){
-		return new String(this.getRama()+"->"+this.getNombre());
+		return new String(this.getRama()+" --> "+this.getNombre());
 	}
 	//---Dibujar arbol
 		/**

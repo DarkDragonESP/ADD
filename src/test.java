@@ -3,8 +3,19 @@ import java.util.*;
 public class test {
 
 	public static void main(String[] args) {
+		
+		Inicializador a1 = new Inicializador("ejemplo1.csv",true);
+		System.out.println(a1.procesar());
+		
+		a1 = new Inicializador("ejemplo2.csv",true);
+		System.out.println(a1.procesar());
+		
+		a1 = new Inicializador("ejemplo3false.csv",false);
+		System.out.println(a1.procesar());
+		
+		
 		//datos de entrada tras procesar .csv
-		List<Boolean> filas=new LinkedList<Boolean>();;
+		/*List<Boolean> filas=new LinkedList<Boolean>();;
 		List<Boolean> columnas=new LinkedList<Boolean>();;
 
 		
@@ -46,7 +57,7 @@ public class test {
 		
 		analizadorDeDatos datos= new analizadorDeDatos(ejemplo,atributos);
 			System.out.println(Nodo.toStringTree(datos.procesarDatos(filas, columnas, " ")));
-		*/
+		
 		
 		analizadorDeDatos datos2=Lectura_Datos.crea_analizador("ejemplo1.csv");
 	
