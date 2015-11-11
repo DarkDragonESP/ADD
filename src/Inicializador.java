@@ -5,13 +5,13 @@ import java.util.Map;
 public class Inicializador {
 	private analizadorDeDatos datos;
 	private List<Boolean> filas,columnas;
-	//columna True si salida es columna 0, false si columna salida es la ultima (checkbox)
-	public Inicializador(String fichero, Boolean columna){
+	
+	public Inicializador(String fichero, Integer columna){
 		datos=Lectura_Datos.crea_analizador(fichero);
 		System.out.println(datos.toString());
 		//mover la columna final a la primera si columna es falso
-		if(!columna){
-			this.modificarUltimaCol();
+		if(columna>0){
+			this.modificarUltimaCol(columna);
 		}
 		System.out.println(datos.toString());
 		//inicializar filas y columnas
@@ -28,8 +28,12 @@ public class Inicializador {
 	public String procesar(){
 		return Nodo.toStringTree(datos.procesarDatos(filas, columnas, " "));
 	}
-	private void modificarUltimaCol(){
-		int ultPos = this.datos.getAtributos().size()-1;
+	private void modificarUltimaCol(Integer col){
+		int ultPos =col;
+		if (ultPos > this.datos.getAtributos().size()-1){
+			ultPos = this.datos.getAtributos().size()-1;
+		}
+		 
 		Atributo aux1 = this.datos.getAtributos().get(0);
 		this.datos.getAtributos().set(0,this.datos.getAtributos().get(ultPos) );
 		this.datos.getAtributos().set(ultPos,aux1); 

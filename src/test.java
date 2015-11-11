@@ -5,23 +5,23 @@ public class test {
 	public static void main(String[] args) {
 		Inicializador a1;
 		
-		a1 = new Inicializador("ejemplo1.csv",true);
+		a1 = new Inicializador("ejemplo1.csv",0);
 		System.out.println(a1.procesar());
 		
-		a1 = new Inicializador("ejemplo2.csv",true);
+		a1 = new Inicializador("ejemplo2.csv",0);
 		System.out.println(a1.procesar());
 		
-		a1 = new Inicializador("ejemplo3false.csv",false);
+		a1 = new Inicializador("ejemplo3false.csv",100);
 		System.out.println(a1.procesar());
 		
-		a1 = new Inicializador("ejemplo4false.csv",false);
+		a1 = new Inicializador("ejemplo4false.csv",100);
 		System.out.println(a1.procesar());
 		
-		a1 = new Inicializador("ejemplo5false.csv",false);
+		a1 = new Inicializador("ejemplo5false.csv",100);
 		System.out.println(a1.procesar());
 		
 		
-		a1 = new Inicializador("ejemplo6false.csv",false);
+		a1 = new Inicializador("ejemplo6false.csv",100);
 		System.out.println(a1.procesar());
 		
 		
