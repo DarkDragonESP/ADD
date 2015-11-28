@@ -16,7 +16,7 @@ public class analizadorDeDatos {
 	 * @param nodo
 	 *            nodo del arbol en el que estamos trabajando
 	 * @param hijo
-	 * 			  nºdel hijo si nodo no es vacio
+	 * 			  nÂºdel hijo si nodo no es vacio
 	 */
 	public Nodo procesarDatos(List<Boolean> filas,List<Boolean> columnas,String rama){
 		Nodo nodo;
@@ -58,7 +58,10 @@ public class analizadorDeDatos {
 				System.out.println("Caso 2.2");
 				//Caso 2.2.1 No hay filas
 				if(!hayFilas(filas)){
-					nodo= new Nodo("undefined",rama);
+					// Obtener el mayoritario
+					String nombre_nodo = Func_Mat.mayoritario(this.getDatos());
+
+					nodo = new Nodo(nombre_nodo, rama);
 				}else{
 					double gananciaMax =0;
 					int indice=0;
