@@ -84,6 +84,37 @@ public class Func_Mat {
 //System.out.println("Entropia condicionada de "+value+" es "+res);
 		return res;
 	}
+	
+	/**
+	 * @param matriz
+	 *            datos de entrada
+	 * @return nombre del atributo que más se repite
+	 */
+	public static String mayoritario(Map<Integer, List<String>> matriz) {
+		Map<String, Integer> salidas = new HashMap<>();
+		for (int index : matriz.keySet()) {
+			List<String> atrs = matriz.get(index);
+
+			String element = atrs.get(0);
+
+			if (salidas.containsKey(element))
+				salidas.put(element, salidas.get(element) + 1);
+			else
+				salidas.put(element, 1);
+		}
+
+		int cantidad = 0;
+		String result = null;
+		for (String nodo : salidas.keySet()) {
+			int this_cantidad = salidas.get(nodo);
+			if (this_cantidad > cantidad) {
+				cantidad = this_cantidad;
+				result = nodo;
+			}
+		}
+
+		return result;
+	}
 
 	/**
 	 * @param filas
