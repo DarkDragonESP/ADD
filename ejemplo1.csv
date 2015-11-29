@@ -1,0 +1,15 @@
+administrar farmaco,presion arterial,azucar en sangre,indice de colesterol,alergia a antibioticos,otras alergias
+si,alta,alta,alta,no,no
+si,alta,alta,alta,si,no
+si,baja,alta,baja,no,no
+no,media,alta,alta,no,si
+no,media,baja,alta,si,si
+si,baja,baja,alta,si,si
+si,alta,baja,alta,si,no
+si,alta,baja,baja,no,si
+no,alta,alta,baja,si,si
+si,baja,baja,alta,si,si
+si,media,baja,baja,si,si
+no,alta,baja,alta,si,si
+si,baja,alta,alta,si,si
+si,baja,alta,baja,no,no
