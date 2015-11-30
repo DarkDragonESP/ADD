@@ -63,10 +63,10 @@ public class Nodo {
 			while (it.hasNext()) {
 				Iterator<Nodo> anIt = it.next();
 				if (anIt.hasNext() || (!it.hasNext() && amLast)) {
-					result.append("        |");
+					result.append("                   |");
 				}
 				else {
-					result.append("           ");
+					result.append("                       ");
 				}
 			}
 			return result.toString();
