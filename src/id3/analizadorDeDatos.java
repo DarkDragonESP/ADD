@@ -60,7 +60,7 @@ public class analizadorDeDatos {
 				//Caso 2.2.1 No hay filas
 				if(!hayFilas(filas)){
 					// Obtener el mayoritario
-					String nombre_nodo = Func_Mat.mayoritario(this.getDatos());
+					String nombre_nodo = "["+Func_Mat.mayoritario(this.getDatos())+"]";
 
 					nodo = new Nodo(nombre_nodo, rama);
 				}else{
