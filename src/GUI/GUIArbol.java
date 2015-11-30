@@ -60,7 +60,7 @@ public class GUIArbol extends JFrame {
         northPane = new JPanel();
         northPane.setLayout(new GridLayout(3, 1));
  
-        textLabel = new JLabel("Seleccione el fichero de datos (CSV)");
+        textLabel = new JLabel("Seleccione el fichero de entrada de datos (CSV)");
         northPane.add(new JPanel().add(textLabel));
         
         JPanel centerNorth = new JPanel();
@@ -80,12 +80,12 @@ public class GUIArbol extends JFrame {
         
         JPanel southNorth = new JPanel();
         
-        JLabel textLabelCol = new JLabel("Nº Columnas"); 
+        JLabel textLabelCol = new JLabel("Numero de Columna del Atributo de Salida"); 
         southNorth.add(textLabelCol);
         southNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
         
         colTextField = new JTextField();
-        colTextField.setToolTipText("Indicar número de columnas. Por defecto 0.");
+        colTextField.setToolTipText("Indicar numero de columnas. Por defecto 0.");
         colTextField.setPreferredSize(new Dimension(50, 25));
         southNorth.add(colTextField);
         
