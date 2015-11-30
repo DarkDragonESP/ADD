@@ -27,6 +27,7 @@ public class GUIArbol extends JFrame {
     private JTextField colTextField;
     private File archivoElegido;
     private JLabel pathLabel;
+    private JButton run;
  
     /**
      * Launch the application.
@@ -60,7 +61,7 @@ public class GUIArbol extends JFrame {
         northPane = new JPanel();
         northPane.setLayout(new GridLayout(3, 1));
  
-        textLabel = new JLabel("Seleccione el fichero de entrada de datos (CSV)");
+        textLabel = new JLabel("Seleccione el fichero de entrada datos (CSV)");
         northPane.add(new JPanel().add(textLabel));
         
         JPanel centerNorth = new JPanel();
@@ -80,16 +81,17 @@ public class GUIArbol extends JFrame {
         
         JPanel southNorth = new JPanel();
         
-        JLabel textLabelCol = new JLabel("Numero de Columna del Atributo de Salida"); 
+        JLabel textLabelCol = new JLabel("Número de columna del atributo de salida"); 
         southNorth.add(textLabelCol);
         southNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
         
         colTextField = new JTextField();
-        colTextField.setToolTipText("Indicar numero de columnas. Por defecto 0.");
+        colTextField.setToolTipText("Indicar número de columna. Por defecto 0.");
         colTextField.setPreferredSize(new Dimension(50, 25));
         southNorth.add(colTextField);
         
-        JButton run = new JButton("Iniciar");
+        run = new JButton("Iniciar");
+        run.setEnabled(false);
         southNorth.add(run);
                     
         northPane.add(southNorth).setLocation(2,0);
@@ -100,13 +102,18 @@ public class GUIArbol extends JFrame {
         /*Center Panel*/
 
       textArea = new JTextArea();
+      
       textArea.setLineWrap(true);
       textArea.setWrapStyleWord(true);
+      textArea.setText("INSTRUCCIONES\n"
+    		            + "- Seleccionar el fichero que contiene los datos utilizando el botón 'Seleccionar'.\n"
+    		  			+ "- Si es preciso, indicar el número de columna del atributo de salida, el valor por defecto es 0.\n"
+      					+ "- Pulsar el botón 'Iniciar'.");
    
       Border border = BorderFactory.createLineBorder(Color.BLACK);
       textArea.setBorder(BorderFactory.createCompoundBorder(border, 
                   BorderFactory.createEmptyBorder(5, 20, 5, 20)));
-     ;
+     
       JScrollPane scroll=new JScrollPane(textArea);
      
       centerPane = new JPanel();
@@ -126,6 +133,7 @@ public class GUIArbol extends JFrame {
         btnSeleccionar.addActionListener(new ActionListener(){
             public void actionPerformed (ActionEvent e){
             	openSelector();
+            	if( archivoElegido != null) {run.setEnabled(true);}
             }
         });
         
