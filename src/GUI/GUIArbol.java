@@ -81,12 +81,12 @@ public class GUIArbol extends JFrame {
         
         JPanel southNorth = new JPanel();
         
-        JLabel textLabelCol = new JLabel("Número de columna del atributo de salida"); 
+        JLabel textLabelCol = new JLabel("Numero de columna del atributo de salida"); 
         southNorth.add(textLabelCol);
         southNorth.setLayout(new FlowLayout(FlowLayout.LEFT));
         
         colTextField = new JTextField();
-        colTextField.setToolTipText("Indicar número de columna. Por defecto 0.");
+        colTextField.setToolTipText("Indicar numero de columna. Por defecto 0.");
         colTextField.setPreferredSize(new Dimension(50, 25));
         southNorth.add(colTextField);
         
@@ -106,9 +106,9 @@ public class GUIArbol extends JFrame {
       textArea.setLineWrap(true);
       textArea.setWrapStyleWord(true);
       textArea.setText("INSTRUCCIONES\n"
-    		            + "- Seleccionar el fichero que contiene los datos utilizando el botón 'Seleccionar'.\n"
-    		  			+ "- Si es preciso, indicar el número de columna del atributo de salida, el valor por defecto es 0.\n"
-      					+ "- Pulsar el botón 'Iniciar'.");
+    		            + "- Seleccionar el fichero que contiene los datos utilizando el boton 'Seleccionar'.\n"
+    		  			+ "- Si es preciso, indicar el numero de columna del atributo de salida, el valor por defecto es 0.\n"
+      					+ "- Pulsar el boton 'Iniciar'.");
    
       Border border = BorderFactory.createLineBorder(Color.BLACK);
       textArea.setBorder(BorderFactory.createCompoundBorder(border, 
